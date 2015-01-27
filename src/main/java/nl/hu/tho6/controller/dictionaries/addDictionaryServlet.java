@@ -13,7 +13,6 @@ import java.util.regex.Pattern;
 
 
 public class addDictionaryServlet extends HttpServlet {
-    private ArrayList<String> elements = new ArrayList<String>();
     private String message;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,7 +27,7 @@ public class addDictionaryServlet extends HttpServlet {
             message = "code is empty";
             rd = request.getRequestDispatcher("addDictionary.jsp");
         } else {
-            elements = tagsInTemplate(code);
+            ArrayList<String> elements = tagsInTemplate(code);
             if(elements.contains("TriggerName")){
                 elements.remove("TriggerName");
             }
@@ -98,7 +97,7 @@ public class addDictionaryServlet extends HttpServlet {
         rd.forward(request, response);
     }
 
-    public static ArrayList<String> tagsInTemplate(String element) {
+    private ArrayList<String> tagsInTemplate(String element) {
         ArrayList<String> elements = new ArrayList<String>();
         Pattern p = Pattern.compile("\\[([^\\]]+)]");
         Matcher m = p.matcher(element);

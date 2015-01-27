@@ -16,21 +16,16 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 public class BusinessruleOphaalServlet extends HttpServlet {
-    private ArrayList<BusinessRule> ongeGenereerdeBusinessRule = new ArrayList<BusinessRule>();
-    private String returnMessage;
-    private String succeeded;
-    private String failed;
     private Generator generator = Generator.getInstance();
-    private int fouten;
-
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         String database = req.getParameter("DATABASE");
-        fouten = 0;
+        int fouten = 0;
         Connection con = ConnectionFactory.getConnection();
         ConnectDBBusinessRule cdbbr = new ConnectDBBusinessRule(con);
-        ongeGenereerdeBusinessRule = cdbbr.getOngegenereerdeBusinessRules();
+        ArrayList<BusinessRule> ongeGenereerdeBusinessRule = cdbbr.getOngegenereerdeBusinessRules();
         System.out.println("Size: " + ongeGenereerdeBusinessRule.size());
+        String returnMessage;
         if(ongeGenereerdeBusinessRule.size() == 0){
             returnMessage = "Er zijn geen businessrules te genereren.";
         } else {
@@ -57,9 +52,9 @@ public class BusinessruleOphaalServlet extends HttpServlet {
                 }
             }
             if((ongeGenereerdeBusinessRule.size() - fouten) == 1){
-                returnMessage = "Er is " + (ongeGenereerdeBusinessRule.size()-fouten) + " businessrule gegenereerd.";
+                returnMessage = "Er is " + (ongeGenereerdeBusinessRule.size()- fouten) + " businessrule gegenereerd.";
             } else {
-                returnMessage = "Er zijn " + (ongeGenereerdeBusinessRule.size()-fouten) + " businessrules gegenereerd.";
+                returnMessage = "Er zijn " + (ongeGenereerdeBusinessRule.size()- fouten) + " businessrules gegenereerd.";
             }
             if(fouten > 0){
                 if(fouten == 1) {

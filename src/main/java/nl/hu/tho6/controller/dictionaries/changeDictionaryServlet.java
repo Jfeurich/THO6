@@ -39,7 +39,6 @@ public class changeDictionaryServlet extends HttpServlet {
             facade.deleteDictionary(dictionary);
 
             dictionary.setLanguage(language);
-//            System.out.println("lanugage: " + dictionary.getLanguage());
 
             for (Translation element : elements) {
                 element.setLanguage(language);
@@ -47,21 +46,8 @@ public class changeDictionaryServlet extends HttpServlet {
                 element.setElementTranslation(request.getParameter(element.getElement()));
             }
             facade.writeDictionary(dictionary);
-
-//            List<Translation> translations = dictionary.getTranslations();
-//            for (int i = 0; i < elements.size(); i++) {
-//                for (Translation translation : translations) {
-//                    if (elements.get(i).equals(translation.getElement())){
-//                        translation.setElementTranslation(request.getParameter(elements.get(i)));
-//                    }
-//                }
-//            }
+            
             message = "Dictionary is changed";
-
-
-//
-//            facade.writeDictionary(dictionary);
-//            translator.addDictionary(dictionary);
         }
 
         request.setAttribute("message", message);

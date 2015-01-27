@@ -4,10 +4,7 @@ import nl.hu.tho6.domain.businessrule.BusinessRule;
 import nl.hu.tho6.translator.Translator;
 import nl.hu.tho6.utils.stringtemplate.StringTemplate;
 
-import java.util.ArrayList;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Created by Liam on 17-12-2014.
@@ -142,8 +139,7 @@ public class Generator {
     }
 
     private String generateTriggerName(BusinessRule businessRule) {
-        String code = "BRG_TARGET_" + businessRule.getAttribute1().getTabel().substring(0,3) + "_TRIGGER" + businessRule.getRuleID();
-        return code;
+        return "BRG_TARGET_" + businessRule.getAttribute1().getTabel().substring(0,3) + "_TRIGGER" + businessRule.getRuleID();
     }
 
     private String generateTimpeOperator(BusinessRule businessRule) {
@@ -155,8 +151,7 @@ public class Generator {
     }
 
     private String generateTableName(BusinessRule businessRule) {
-        String tableName = businessRule.getAttribute1().getTabel();
-        return tableName;
+        return businessRule.getAttribute1().getTabel();
     }
 
     private String generateError(BusinessRule businessRule, String language) {

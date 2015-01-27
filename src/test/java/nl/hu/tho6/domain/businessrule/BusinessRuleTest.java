@@ -9,8 +9,8 @@ import static org.junit.Assert.assertNotEquals;
 
 public class BusinessRuleTest {
     private BusinessRule testBusinessRule;
-    private Operator     testOperator, testOperator2;
-    private Value testValue, testValue2;
+    private Operator     testOperator;
+    private Value        testValue, testValue2;
     private Attribute testAttribute, testAttribute2;
 
     @Before
@@ -86,7 +86,7 @@ public class BusinessRuleTest {
 
     @Test
     public void testSetOperator() {
-        testOperator2 = new Operator("a", "a");
+        Operator testOperator2 = new Operator("a", "a");
         testBusinessRule.setOperator(testOperator2);
         assertNotEquals(new Operator("", ""), testBusinessRule.getOperator());
         assertEquals(testOperator2, testBusinessRule.getOperator());

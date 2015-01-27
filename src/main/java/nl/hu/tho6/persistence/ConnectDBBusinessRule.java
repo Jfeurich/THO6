@@ -6,11 +6,11 @@ import nl.hu.tho6.domain.businessrule.Operator;
 import nl.hu.tho6.domain.businessrule.Value;
 import nl.hu.tho6.persistence.connection.ConnectionFactory;
 
-import java.sql.PreparedStatement;
-import java.util.ArrayList;
 import java.sql.Connection;
-import java.sql.Statement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 //import java.util.Optional;
 
 /*
@@ -95,7 +95,7 @@ public class ConnectDBBusinessRule {
                 r.setOperator(o);
                 r.setBusinessruletype(ruletype);
                 if(a1 != null && a2 != null){
-                    if(a1.getTabel() != a2.getTabel()){
+                    if(!a1.getTabel().equals(a2.getTabel())){
                         setReferences(a1,a2);
                     }
                 }
@@ -263,10 +263,7 @@ public class ConnectDBBusinessRule {
     }
     /*Controleer of een object null returnt */
     public boolean nulltest(Object o){
-        if(o!=null){
-            return true;
-        }
-        return false;
+        return o != null;
     }
 
     /*Sla de gemaakte businessrule op in de oracle database.*/
