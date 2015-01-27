@@ -39,7 +39,7 @@ public class ContextListener implements ServletContextListener {
     }
 
     private void readAllDictionaries(FileSystemFacade facade) throws IOException {
-        File dir = new File(PathUtils.getDictionaryPathTomcat());
+        File dir = new File(PathUtils.getDictionaryPath());
         File[] directoryListing = dir.listFiles();
         if (directoryListing != null) {
             for (File file : directoryListing) {

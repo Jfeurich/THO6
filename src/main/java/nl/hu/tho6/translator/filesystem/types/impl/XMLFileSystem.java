@@ -21,7 +21,7 @@ public class XMLFileSystem implements FileSystem {
             JAXBContext context = JAXBContext.newInstance(Dictionary.class);
             Marshaller m = context.createMarshaller();
             m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-            m.marshal(dictionary, new File(PathUtils.getDictionaryPathTomcat() + PathUtils.DICTIONARY_PREFIX + dictionary.getLanguage() + FILE_TYPE));
+            m.marshal(dictionary, new File(PathUtils.getDictionaryPath() + PathUtils.DICTIONARY_PREFIX + dictionary.getLanguage() + FILE_TYPE));
         } catch (JAXBException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -34,7 +34,7 @@ public class XMLFileSystem implements FileSystem {
         try {
             JAXBContext context = JAXBContext.newInstance(Dictionary.class);
             Unmarshaller un = context.createUnmarshaller();
-            return (Dictionary) un.unmarshal(new File(PathUtils.getDictionaryPathTomcat() + PathUtils.DICTIONARY_PREFIX + language + FILE_TYPE));
+            return (Dictionary) un.unmarshal(new File(PathUtils.getDictionaryPath() + PathUtils.DICTIONARY_PREFIX + language + FILE_TYPE));
         } catch (JAXBException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -46,7 +46,7 @@ public class XMLFileSystem implements FileSystem {
     @Override
     public void deleteFile(Dictionary dictionary) {
         try {
-            File dictionaryToDelete = new File(PathUtils.getDictionaryPathTomcat() + PathUtils.DICTIONARY_PREFIX + dictionary.getLanguage() + FILE_TYPE);
+            File dictionaryToDelete = new File(PathUtils.getDictionaryPath() + PathUtils.DICTIONARY_PREFIX + dictionary.getLanguage() + FILE_TYPE);
             dictionaryToDelete.delete();
         } catch (IOException e) {
             e.printStackTrace();

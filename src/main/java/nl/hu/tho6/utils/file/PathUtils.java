@@ -10,8 +10,8 @@ import java.io.IOException;
 public class PathUtils {
     public static final String DICTIONARY_PREFIX = "dictionary-";
 
-    public static String getDictionaryPathTomcat() throws IOException {
+    public static String getDictionaryPath() throws IOException {
         GetPropertyValues propertyValues = new GetPropertyValues();
-        return propertyValues.getPropValue("localFilePathDictionaries");
+        return propertyValues.getPropValue("dictionariesFilepath");
     }
 }
